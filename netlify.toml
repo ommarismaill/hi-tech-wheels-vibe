@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Tell Nitro (used by TanStack Start) to build for Netlify instead of Cloudflare Workers.
+  NITRO_PRESET = "netlify"
+  NODE_VERSION = "20"
+
+# SPA fallback — only used if the deploy ends up being purely static (no SSR function).
+# When the Netlify SSR function is present, Netlify routes dynamic requests to it first.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
